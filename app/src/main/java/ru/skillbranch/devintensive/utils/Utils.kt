@@ -16,7 +16,11 @@ object Utils {
         return "";
     }
 
-    fun toInitials(firstNams:String?, lastNams:String?):String{
-        return "";
+    fun toInitials(firstName:String?, lastName:String?):String{
+        var initialFirstName = firstName?.trim()?.getOrNull(0)?.toUpperCase()
+        var initialLastName = lastName?.trim()?.getOrNull(0)?.toUpperCase()
+
+
+        return "${if(initialFirstName==null) "" else initialFirstName}${if(initialLastName==null) "" else initialLastName}".ifEmpty { "null" }
     }
 }
