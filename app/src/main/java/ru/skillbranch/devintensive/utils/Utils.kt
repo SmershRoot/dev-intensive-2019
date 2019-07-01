@@ -98,11 +98,11 @@ object Utils {
         return mapTransliteration
     }
 
-    fun toInitials(firstName:String?, lastName:String?):String{
+    fun toInitials(firstName:String?, lastName:String?):String?{
         val initialFirstName = firstName?.trim()?.getOrNull(0)?.toUpperCase()
         val initialLastName = lastName?.trim()?.getOrNull(0)?.toUpperCase()
 
 
-        return "${if(initialFirstName==null) "" else initialFirstName}${if(initialLastName==null) "" else initialLastName}".ifEmpty { "null" }
+        return "${if(initialFirstName==null) "" else initialFirstName}${if(initialLastName==null) "" else initialLastName}".ifEmpty { null }
     }
 }

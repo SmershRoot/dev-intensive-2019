@@ -40,20 +40,20 @@ fun Date.humanizeDiff(date:Date = Date()):String{
         (difference/SECONDS.toDouble()>=-45 && difference/SECONDS.toDouble()<-1) -> "несколько секунд назад"
         (difference/SECONDS.toDouble()<=75 && difference/SECONDS.toDouble()>45) -> "через минуту"
         (difference/SECONDS.toDouble()>=-75 && difference/SECONDS.toDouble()<-45) -> "минуту назад"
-        (difference/MINUTE.toDouble()<=45 && difference/SECONDS.toDouble()>75) -> "через ${abs(difference/MINUTE.toDouble()).toInt()} ${formMinute((difference/MINUTE.toDouble()).toInt())}"
-        (difference/MINUTE.toDouble()>=-45 && difference/SECONDS.toDouble()<-75) -> "${abs(difference/MINUTE.toDouble()).toInt()} ${formMinute((difference/MINUTE.toDouble()).toInt())} назад"
+        (difference/MINUTE.toDouble()<=45 && difference/SECONDS.toDouble()>75) -> "через ${Math.round(abs(difference/MINUTE.toDouble()))} ${formMinute((difference/MINUTE.toDouble()).toInt())}"
+        (difference/MINUTE.toDouble()>=-45 && difference/SECONDS.toDouble()<-75) -> "${Math.round(abs(difference/MINUTE.toDouble()))} ${formMinute((difference/MINUTE.toDouble()).toInt())} назад"
 
         (difference/MINUTE.toDouble()<=75 && difference/MINUTE.toDouble()>45) -> "через час"
         (difference/MINUTE.toDouble()>=-75 && difference/MINUTE.toDouble()<-45) -> "час назад"
 
-        (difference/HOUR.toDouble()<=22 && difference/MINUTE.toDouble()>75) -> "через ${abs(difference/HOUR.toDouble()).toInt()} ${formHour((difference/HOUR.toDouble()).toInt())}"
-        (difference/HOUR.toDouble()>=-22 && difference/MINUTE.toDouble()<-75) -> "${abs(difference/HOUR.toDouble()).toInt()} ${formHour((difference/HOUR.toDouble()).toInt())} назад"
+        (difference/HOUR.toDouble()<=22 && difference/MINUTE.toDouble()>75) -> "через ${Math.round(abs(difference/HOUR.toDouble()))} ${formHour((difference/HOUR.toDouble()).toInt())}"
+        (difference/HOUR.toDouble()>=-22 && difference/MINUTE.toDouble()<-75) -> "${Math.round(abs(difference/HOUR.toDouble()))} ${formHour((difference/HOUR.toDouble()).toInt())} назад"
 
         (difference/HOUR.toDouble()<=26 && difference/HOUR.toDouble()>22) -> "через день"
         (difference/HOUR.toDouble()>=-26 && difference/HOUR.toDouble()<-22) -> "день назад"
 
-        (difference/DAY.toDouble()<=360 && difference/HOUR.toDouble()>26) -> "через ${abs(difference/DAY.toDouble()).toInt()} ${formDay((difference/DAY.toDouble()).toInt())}"
-        (difference/DAY.toDouble()>=-360 && difference/HOUR.toDouble()<-26) -> "${abs(difference/DAY.toDouble()).toInt()} ${formDay((difference/DAY.toDouble()).toInt())} назад"
+        (difference/DAY.toDouble()<=360 && difference/HOUR.toDouble()>26) -> "через ${Math.round(abs(difference/DAY.toDouble()))} ${formDay((difference/DAY.toDouble()).toInt())}"
+        (difference/DAY.toDouble()>=-360 && difference/HOUR.toDouble()<-26) -> "${Math.round(abs(difference/DAY.toDouble()))} ${formDay((difference/DAY.toDouble()).toInt())} назад"
 
         (difference/DAY.toDouble()>360) -> "более чем через год"
         (difference/DAY.toDouble()<-360) -> "более года назад"
