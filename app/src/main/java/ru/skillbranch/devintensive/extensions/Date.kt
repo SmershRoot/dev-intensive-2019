@@ -29,10 +29,22 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date{
     return this
 }
 
-enum class TimeUnits {SECOND, MINUTE, HOUR, DAY}
+enum class TimeUnits {
+    SECOND,
+    MINUTE,
+    HOUR,
+    DAY;
+
+    fun plural(value: Int):String{
+        return formTimeOfType(this, value)
+    }
+
+
+
+}
 
 fun Date.humanizeDiff(date:Date = Date()):String{
-    var difference = this.time - date.time
+    val difference = this.time - date.time
 
     return when {
         (abs(difference)/SECONDS.toDouble()<=1) -> "только что"
@@ -61,6 +73,30 @@ fun Date.humanizeDiff(date:Date = Date()):String{
 
         else -> "Не удалось определить"
     }
+}
+
+
+private fun formTimeOfType (typeTime: TimeUnits, value: Int):String{
+    return when(typeTime) {
+        TimeUnits.SECOND -> "$value ${formSecond(value)}"
+        TimeUnits.MINUTE -> "$value ${formMinute(value)}"
+        TimeUnits.HOUR -> "$value ${formHour(value)}"
+        TimeUnits.DAY -> "$value ${formDay(value)}"
+    }
+
+}
+
+private fun formSecond(countSecond:Int):String{
+    when(abs(countSecond)) {
+        11,12,13,14 -> return "секунд"
+    }
+
+    when(abs(countSecond%10)){
+        1 -> return "секунду"
+        2,3,4 -> return "секунды"
+        0,5,6,7,8,9 -> return "секунд"
+    }
+    return formMinute(countSecond%10)
 }
 
 private fun formMinute(countMinute:Int):String{
